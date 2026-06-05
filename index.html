@@ -3,72 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Omega 3</title>
+  <title>VitaPlus – Премиальные витамины</title>
 
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       background: #f5f5f5;
-      animation: fadeIn 0.6s ease-in-out;
-      font-size: 16px; /* kleiner */
+      font-size: 16px;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    header {
+      text-align: center;
+      padding: 20px;
+      background: #ffffff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     h1 {
+      font-size: 26px;
+      margin-bottom: 5px;
+      color: #1c3b4a;
+    }
+
+    header p {
+      font-size: 16px;
+      color: #444;
+    }
+
+    h2 {
       text-align: center;
       color: #1c3b4a;
-      margin-top: 25px;
-      font-size: 26px; /* kleiner */
-      animation: slideDown 0.6s ease;
+      font-size: 22px;
+      margin-top: 30px;
     }
 
-    @keyframes slideDown {
-      from { transform: translateY(-20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+    .content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px 40px;
     }
 
-    p {
-      max-width: 700px;
-      margin: 10px auto;
-      text-align: center;
-      line-height: 1.5;
-      font-size: 16px; /* kleiner */
-      color: #333;
-      padding: 0 15px;
-    }
-
-    .btn {
-      display: block;
-      margin: 20px auto;
-      padding: 12px 16px; /* kleiner */
-      background: #0b8a3b;
-      color: white;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      width: 80%;
-      max-width: 240px; /* kleiner */
-      text-align: center;
-      font-size: 18px; /* kleiner */
-      transition: 0.2s;
-    }
-
-    .btn:hover {
-      background: #0a6f30;
-      transform: scale(1.03);
-    }
-
-    /* --- SLIDER (3 Fotos) --- */
+    /* --- HERO SLIDER --- */
     .slider-container {
       position: relative;
       width: 100%;
       overflow: hidden;
-      max-width: 700px; /* kleiner */
+      max-width: 700px;
       margin: 20px auto;
     }
 
@@ -85,7 +66,7 @@
       height: auto;
       flex-shrink: 0;
       scroll-snap-align: center;
-      border-radius: 10px; /* kleiner */
+      border-radius: 10px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.15);
     }
 
@@ -96,8 +77,8 @@
       background: #0b8a3b;
       color: white;
       border: none;
-      padding: 10px 12px; /* kleiner */
-      font-size: 22px; /* kleiner */
+      padding: 10px 12px;
+      font-size: 22px;
       border-radius: 50%;
       cursor: pointer;
       z-index: 10;
@@ -106,72 +87,99 @@
     .arrow.left { left: 10px; }
     .arrow.right { right: 10px; }
 
-    /* Kategorie */
-    a[href="cart.html"] {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #0b8a3b;
-      color: white;
-      padding: 8px 12px; /* kleiner */
-      border-radius: 8px;
-      text-decoration: none;
+    /* --- PRODUKT-SLIDER (1 Produkt pro Slide, gleiche Breite wie oben) --- */
+    /* --- PRODUKT-SLIDER (gleich breit wie oben) --- */
+    .product-slider-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      max-width: 700px; /* exakt wie der obere Slider */
+      margin: 20px auto;
+    }
+
+    .product-slider {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      gap: 20px;
+      padding: 10px 0;
+    }
+    .product {
+  min-width: 100%;
+  scroll-snap-align: center;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+
+  /* NEU: alles zentrieren */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+    .product h3 {
+      margin-top: 0;
+      font-size: 22px;
+      color: #1c3b4a;
+    }
+
+    .product p {
+      font-size: 16px;
+    }
+
+    .price {
+      font-size: 18px;
       font-weight: bold;
-      font-size: 16px; /* kleiner */
-      z-index: 9999;
-    }
-
-    .category {
-      position: fixed;
-      top: 65px;
-      right: 20px;
-      background: #0b8a3b;
-      color: white;
-      padding: 8px 12px; /* kleiner */
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 16px; /* kleiner */
-      z-index: 9999;
-    }
-
-    .category-content {
-      display: none;
-      position: fixed;
-      top: 110px;
-      right: 20px;
-      width: 180px; /* kleiner */
-      background: #f7f7f7;
-      padding: 10px 12px; /* kleiner */
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      animation: fadeIn 0.3s ease;
-      font-size: 16px; /* kleiner */
-    }
-
-    .category-content a {
-      text-decoration: none;
       color: #0b8a3b;
-      font-weight: bold;
-      font-size: 16px; /* kleiner */
+      margin: 10px 0;
+    }
+
+    .btn {
+  display: block;        /* statt inline-block → zentriert */
+  width: 80%;            /* gleiche Breite für beide Buttons */
+  max-width: 240px;      /* nicht zu breit */
+  margin: 10px auto;     /* zentriert */
+  padding: 10px 14px;
+  background: #0b8a3b;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+
+    .btn:hover {
+      background: #0a6f30;
+    }
+
+    
+
+    footer {
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      padding: 20px 0 30px;
     }
   </style>
 
-  <!-- Kategorie Menü -->
-  <a href="cart.html">🛒 Корзина</a>
-
-  <div class="category" onclick="toggleCategory('cat1')">
-    ➕ Витамины A–Z
-  </div>
-
-  <div id="cat1" class="category-content">
-    <p><a href="index.html">• Главная страница</a></p>
-    <p><a href="omega 3.html">• Омега‑3</a></p>
-    <p><a href="Magnesium.html">• Магний</a></p>
-    <p><a href="Glucosamin_1600.html">• Глюкозамин 1600</a></p>
-  </div>
-
   <script>
+    function scrollImages(direction) {
+      const slider = document.getElementById("imageSlider");
+      const width = slider.clientWidth;
+      slider.scrollBy({ left: direction * width, behavior: "smooth" });
+    }
+
+    function scrollProducts(direction) {
+      const slider = document.getElementById("productSlider");
+      const width = slider.clientWidth;
+      slider.scrollBy({ left: direction * width, behavior: "smooth" });
+    }
+
     function toggleCategory(id) {
       const box = document.getElementById(id);
       box.style.display = box.style.display === "block" ? "none" : "block";
@@ -183,52 +191,227 @@
       localStorage.setItem("cart", JSON.stringify(cart));
       alert("Добавлено в корзину!");
     }
+  </script>
 
-    function scrollImages(direction) {
-      const slider = document.getElementById("imageSlider");
-      const width = slider.clientWidth;
-      slider.scrollBy({ left: direction * width, behavior: "smooth" });
+    <style>
+    /* Kategorie */
+    .category-content a {
+      text-decoration: none;
+      color: #0b8a3b;
+      font-weight: bold;
+    }
+
+    .category-content a:hover {
+      text-decoration: underline;
+    }
+
+    .category {
+      z-index: 9999;
+      position: fixed;
+    }
+
+    .category-content {
+      z-index: 9999;
+      position: fixed;
+    }
+
+    /* Warenkorb Button */
+    a[href="cart.html"] {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #0b8a3b;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      z-index: 9999;
+    }
+
+    /* Kategorie Button */
+    .category {
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      background: #0b8a3b;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .category-content {
+      display: none;
+      position: fixed;
+      top: 120px;
+      right: 20px;
+      width: 200px;
+      background: #f7f7f7;
+      padding: 10px 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+     </style>
+
+   <script>
+   function toggleCategory(id) {
+      const box = document.getElementById(id);
+      box.style.display = box.style.display === "block" ? "none" : "block";
     }
   </script>
 
+
+   <!-- Warenkorb Button -->
+  <a href="cart.html" 
+     style="position: fixed; top: 20px; right: 20px; 
+            background: #0b8a3b; color: white; padding: 10px 16px; 
+            border-radius: 8px; text-decoration: none; font-weight: bold;">
+    🛒 Корзина
+  </a>
+
+  <!-- Kategorie Button -->
+  <div class="category" onclick="toggleCategory('cat1')"
+       style="position: fixed; top: 70px; right: 20px; 
+              background: #0b8a3b; color: white; padding: 10px 16px; 
+              border-radius: 8px; font-weight: bold; cursor: pointer;">
+    ➕ Витамины A–Z
+  </div>
+
+   <div id="cat1" class="category-content">
+  <p><a href="index.html">• Главная страница</a></p>
+  <p><a href="omega 3.html">• Омега‑3</a></p>
+  <p><a href="Magnesium.html">• Магний</a></p>
+  <p><a href="Glucosamin_1600.html">• Глюкозамин 1600</a></p>
+</div>
+
+
+  <style>
+  .category-content {
+  display: none;
+  position: fixed;
+  top: 120px;
+  right: 20px;
+  width: 200px;
+  background: #f7f7f7;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 9999;
+}
+ </style>
+
+<script>
+ function toggleCategory(id) {
+  const box = document.getElementById(id);
+  box.style.display = box.style.display === "block" ? "none" : "block";
+}
+</script>
 </head>
 <body>
 
-  <h1>Капсулы Mivolis Омега‑3</h1>
+  <header>
+    <h1>VitaPlus – Премиальные витамины</h1>
+    <p>Больше энергии, лучшее самочувствие каждый день.</p>
+  </header>
 
-  <!-- ⭐ 3‑BILDER‑SLIDER -->
+  <!-- HERO SLIDER -->
   <div class="slider-container">
     <button class="arrow left" onclick="scrollImages(-1)">❮</button>
 
     <div class="hero-images" id="imageSlider">
-      <img src="vita1.jpg" alt="Omega 3 Bild 1">
-      <img src="vita2.jpg" alt="Omega 3 Bild 2">
-      <img src="vita3.jpg" alt="Omega 3 Bild 3">
+      <img src="vita1.jpg">
+      <img src="vita2.jpg">
+      <img src="vita3.jpg">
+       <img src="vita1.jpg">
+      <img src="vita2.jpg">
+      <img src="vita3.jpg">
+       <img src="vita1.jpg">
+      <img src="vita2.jpg">
+      <img src="vita3.jpg">
     </div>
 
     <button class="arrow right" onclick="scrollImages(1)">❯</button>
   </div>
 
-  <p>
-    Омега‑3 жирные кислоты являются одними из важнейших строительных элементов организма.  
-    Они поддерживают нормальную работу сердца, мозга и зрения.
-  </p>
+  <main class="content">
+    <h2>Наши бестселлеры</h2>
 
-  <p>
-    Капсулы Mivolis Омега‑3 содержат ценные жирные кислоты EPA и DHA.  
-    Многие люди принимают Омега‑3, если они едят мало рыбы или хотят дополнительно поддержать свой рацион.
-  </p>
+    <!-- PRODUKT-SLIDER (1 Produkt pro Slide, gleiche Breite wie oben) -->
+    <div class="product-slider-container">
+      <button class="arrow left" onclick="scrollProducts(-1)">❮</button>
 
-  <p>
-    В одной упаковке содержится несколько сотен миллиграммов омега‑3 жирных кислот в суточной порции.  
-    Точное количество указано на упаковке и может немного отличаться в зависимости от продукта.
-  </p>
+      <div class="product-slider" id="productSlider">
 
-  <p><strong style="font-size: 20px;">Цена: 700,00 ₽</strong></p>
+          <article class="product">
+          <h3>Омега‑3</h3>
+           <div class="stars">★★★★★</div>
+          <p>Поддерживает иммунную систему.</p>
+          <p class="price">700,00 ₽</p>
+          <a href="omega 3.html" class="btn">Подробнее</a>
+          <a href="#" class="btn" onclick="addToCart('Омега‑3', 700)">В корзину</a>
+        </article>
 
-  <a href="#" class="btn" onclick="addToCart('Mivolis Омега‑3', 700)">
-    В корзину
-  </a>
+        <article class="product">
+          <h3>Глюкозамин</h3>
+                  <div class="stars">★★★★★</div>
+          <p>Для костей и суставов.</p>
+          <p class="price">1200,00 ₽</p>
+          <a href="Glucosamin_1600.html" class="btn">Подробнее</a>
+          <a href="#" class="btn" onclick="addToCart('Глюкозамин 1600', 1200)">В корзину</a>
+        </article>
+
+        <article class="product">
+
+          <h3>Магний комплекс</h3>
+                    <div class="stars">★★★★★</div>
+          <p>Поддерживает мышцы и нервную систему.</p>
+          <p class="price">900,00 ₽</p>
+          <a href="magnesium.html" class="btn">Подробнее</a>
+          <a href="#" class="btn" onclick="addToCart('Магний комплекс', 900)">В корзину</a>
+        </article>
+
+          <article class="product">
+            
+          <h3>Омега‑3</h3>
+          <div class="stars">★★★★★</div>
+          <p>Поддерживает иммунную систему.</p>
+          <p class="price">700,00 ₽</p>
+          <a href="omega 3.html" class="btn">Подробнее</a>
+          <a href="#" class="btn" onclick="addToCart('Омега‑3', 700)">В корзину</a>
+        </article>
+
+        <article class="product">
+         
+          <h3>Глюкозамин</h3>
+           <div class="stars">★★★★★</div>
+          <p>Для костей и суставов.</p>
+          <p class="price">1200,00 ₽</p>
+          <a href="Glucosamin_1600.html" class="btn">Подробнее</a>
+          <a href="#" class="btn" onclick="addToCart('Глюкозамин 1600', 1200)">В корзину</a>
+        </article>
+
+        <article class="product">
+   
+          <h3>Магний комплекс</h3>
+                 <div class="stars">★★★★☆</div>
+          <p>Поддерживает мышцы и нервную систему.</p>
+          <p class="price">900,00 ₽</p>
+          <a href="magnesium.html" class="btn">Подробнее</a>
+          <a href="#" class="btn" onclick="addToCart('Магний комплекс', 900)">В корзину</a>
+        </article>
+
+      </div>
+
+      <button class="arrow right" onclick="scrollProducts(1)">❯</button>
+    </div>
+
+  </main>
+
+  <footer>
+    © 2026 VitaPlus – Примечание: биодобавки не заменяют полноценное питание.
+  </footer>
 
 </body>
 </html>
