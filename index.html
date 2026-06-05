@@ -3,55 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <title>VitaPlus – Твои витамины</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       background: #f5f5f5;
     }
+
     header {
       text-align: center;
       padding: 20px;
       background: #ffffff;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    .hero-images img {
-      width: 260px;
-      height: 260px;
-      object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    }
+
     .content {
       max-width: 1000px;
       margin: 20px auto;
       padding: 0 20px 40px;
     }
+
     h1, h2 {
       text-align: center;
       color: #1c3b4a;
     }
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
+
     .product {
       background: #ffffff;
       border-radius: 10px;
       padding: 15px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
+
     .product h3 {
       margin-top: 0;
       color: #1c3b4a;
     }
+
     .price {
       font-weight: bold;
       color: #0b8a3b;
       margin: 8px 0;
     }
+
     .btn {
       display: inline-block;
       padding: 8px 14px;
@@ -61,18 +56,19 @@
       border-radius: 6px;
       font-size: 14px;
     }
+
     .btn:hover {
       background: #0a6f30;
     }
+
     footer {
       text-align: center;
       font-size: 12px;
       color: #777;
       padding: 15px 0 25px;
     }
-  </style>
 
-  <style>
+    /* Kategorie */
     .category-content a {
       text-decoration: none;
       color: #0b8a3b;
@@ -92,25 +88,34 @@
       z-index: 9999;
       position: fixed;
     }
-  </style>
 
-  <!-- Warenkorb Button -->
-  <a href="cart.html" 
-     style="position: fixed; top: 20px; right: 20px; 
-            background: #0b8a3b; color: white; padding: 10px 16px; 
-            border-radius: 8px; text-decoration: none; font-weight: bold;">
-    🛒 Корзина
-  </a>
+    /* Warenkorb Button */
+    a[href="cart.html"] {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #0b8a3b;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      z-index: 9999;
+    }
 
-  <!-- Kategorie Button -->
-  <div class="category" onclick="toggleCategory('cat1')"
-       style="position: fixed; top: 70px; right: 20px; 
-              background: #0b8a3b; color: white; padding: 10px 16px; 
-              border-radius: 8px; font-weight: bold; cursor: pointer;">
-    ➕ Витамины A–Z
-  </div>
+    /* Kategorie Button */
+    .category {
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      background: #0b8a3b;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-  <style>
     .category-content {
       display: none;
       position: fixed;
@@ -121,11 +126,9 @@
       padding: 10px 15px;
       border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      animation: fadeIn 0.3s ease;
     }
-  </style>
 
-  <style>
+    /* --- SLIDER FIX: EIN BILD PRO ANSICHT --- */
     .slider-container {
       position: relative;
       width: 100%;
@@ -134,19 +137,18 @@
 
     .hero-images {
       display: flex;
-      gap: 15px;
-      padding: 20px;
-      background: #ffffff;
       overflow-x: auto;
+      scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
     }
 
     .hero-images img {
-      min-width: 260px;
-      height: 260px;
-      object-fit: cover;
+      width: 100%;
+      height: auto;
+      flex-shrink: 0;
+      scroll-snap-align: center;
       border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
 
     .arrow {
@@ -165,36 +167,8 @@
 
     .arrow.left { left: 10px; }
     .arrow.right { right: 10px; }
-  </style>
 
-  <script>
-    function scrollImages(direction) {
-      const slider = document.getElementById("imageSlider");
-      slider.scrollBy({ left: direction * 300, behavior: "smooth" });
-    }
-  </script>
-
-  <div id="cat1" class="category-content">
-    <p><a href="omega 3.html">• Омега‑3</a></p>
-    <p><a href="Magnesium.html">• Магний</a></p>
-    <p><a href="Glucosamin_1600.html">• Глюкозамин 1600</a></p>
-  </div>
-
-  <script>
-    function toggleCategory(id) {
-      const box = document.getElementById(id);
-      box.style.display = box.style.display === "block" ? "none" : "block";
-    }
-
-    function addToCart(product, price) {
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
-      cart.push({ product, price });
-      localStorage.setItem("cart", JSON.stringify(cart));
-      alert("Добавлено в корзину!");
-    }
-  </script>
-
-  <style>
+    /* Produkt-Slider */
     .product-slider-container {
       position: relative;
       width: 100%;
@@ -212,31 +186,29 @@
 
     .product-slider .product {
       min-width: 260px;
-      background: #ffffff;
-      border-radius: 10px;
-      padding: 15px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: #0b8a3b;
-      color: white;
-      border: none;
-      padding: 10px 14px;
-      font-size: 22px;
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 10;
-    }
-
-    .arrow.left { left: 10px; }
-    .arrow.right { right: 10px; }
   </style>
 
   <script>
+    function scrollImages(direction) {
+      const slider = document.getElementById("imageSlider");
+      const width = slider.clientWidth;
+      slider.scrollBy({ left: direction * width, behavior: "smooth" });
+    }
+
+    function toggleCategory(id) {
+      const box = document.getElementById(id);
+      box.style.display = box.style.display === "block" ? "none" : "block";
+    }
+
+    function addToCart(product, price) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push({ product, price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert("Добавлено в корзину!");
+    }
+
     function scrollProducts(direction) {
       const slider = document.getElementById("productSlider");
       slider.scrollBy({ left: direction * 300, behavior: "smooth" });
@@ -251,19 +223,11 @@
     <p>Больше энергии, лучшее самочувствие каждый день.</p>
   </header>
 
+  <!-- SLIDER -->
   <div class="slider-container">
     <button class="arrow left" onclick="scrollImages(-1)">❮</button>
 
     <div class="hero-images" id="imageSlider">
-      <img src="vita1.jpg" alt="Омега‑3 капсулы">
-      <img src="vita2.jpg" alt="Витамин D3 капли">
-      <img src="vita3.jpg" alt="Магний таблетки">
-      <img src="vita1.jpg" alt="Омега‑3 капсулы">
-      <img src="vita2.jpg" alt="Витамин D3 капли">
-      <img src="vita3.jpg" alt="Магний таблетки">
-      <img src="vita1.jpg" alt="Омега‑3 капсулы">
-      <img src="vita2.jpg" alt="Витамин D3 капли">
-      <img src="vita3.jpg" alt="Магний таблетки">
       <img src="vita1.jpg" alt="Омега‑3 капсулы">
       <img src="vita2.jpg" alt="Витамин D3 капли">
       <img src="vita3.jpg" alt="Магний таблетки">
@@ -284,7 +248,6 @@
           <h3>Омега‑3</h3>
           <p>Поддерживает иммунную систему.</p>
           <p class="price">700,00 ₽</p>
-
           <a href="omega 3.html" class="btn">Подробнее</a>
           <a href="#" class="btn" onclick="addToCart('Омега‑3', 700)">В корзину</a>
         </article>
@@ -293,7 +256,6 @@
           <h3>Глюкозамин</h3>
           <p>Для костей и суставов.</p>
           <p class="price">1200,00 ₽</p>
-
           <a href="Glucosamin_1600.html" class="btn">Подробнее</a>
           <a href="#" class="btn" onclick="addToCart('Глюкозамин 1600', 1200)">В корзину</a>
         </article>
@@ -302,67 +264,9 @@
           <h3>Магний комплекс</h3>
           <p>Поддерживает мышцы и нервную систему.</p>
           <p class="price">900,00 ₽</p>
-
           <a href="magnesium.html" class="btn">Подробнее</a>
           <a href="#" class="btn" onclick="addToCart('Магний комплекс', 900)">В корзину</a>
         </article>
-
-        
-        <article class="product">
-          <h3>Омега‑3</h3>
-          <p>Поддерживает иммунную систему.</p>
-          <p class="price">700,00 ₽</p>
-
-          <a href="omega 3.html" class="btn">Подробнее</a>
-          <a href="#" class="btn" onclick="addToCart('Омега‑3', 700)">В корзину</a>
-        </article>
-
-        <article class="product">
-          <h3>Глюкозамин</h3>
-          <p>Для костей и суставов.</p>
-          <p class="price">1200,00 ₽</p>
-
-          <a href="Glucosamin_1600.html" class="btn">Подробнее</a>
-          <a href="#" class="btn" onclick="addToCart('Глюкозамин 1600', 1200)">В корзину</a>
-        </article>
-
-        <article class="product">
-          <h3>Магний комплекс</h3>
-          <p>Поддерживает мышцы и нервную систему.</p>
-          <p class="price">900,00 ₽</p>
-
-          <a href="magnesium.html" class="btn">Подробнее</a>
-          <a href="#" class="btn" onclick="addToCart('Магний комплекс', 900)">В корзину</a>
-        </article>
-
-        
-        <article class="product">
-          <h3>Омега‑3</h3>
-          <p>Поддерживает иммунную систему.</p>
-          <p class="price">700,00 ₽</p>
-
-          <a href="omega 3.html" class="btn">Подробнее</a>
-          <a href="#" class="btn" onclick="addToCart('Омега‑3', 700)">В корзину</a>
-        </article>
-
-        <article class="product">
-          <h3>Глюкозамин</h3>
-          <p>Для костей и суставов.</p>
-          <p class="price">1200,00 ₽</p>
-
-          <a href="Glucosamin_1600.html" class="btn">Подробнее</a>
-          <a href="#" class="btn" onclick="addToCart('Глюкозамин 1600', 1200)">В корзину</a>
-        </article>
-
-        <article class="product">
-          <h3>Магний комплекс</h3>
-          <p>Поддерживает мышцы и нервную систему.</p>
-          <p class="price">900,00 ₽</p>
-
-          <a href="magnesium.html" class="btn">Подробнее</a>
-          <a href="#" class="btn" onclick="addToCart('Магний комплекс', 900)">В корзину</a>
-        </article>
-       
 
       </div>
 
@@ -376,5 +280,5 @@
   </footer>
 
 </body>
-
 </html>
+
