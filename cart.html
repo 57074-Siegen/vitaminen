@@ -1,0 +1,70 @@
+<h2 style="text-align:center; color:#1c3b4a; margin-top:30px;">🛒 Корзина</h2>
+
+<div id="cart-box" 
+     style="max-width:600px; margin:20px auto; background:white; padding:20px; 
+            border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.15);">
+
+  <div id="cart"></div>
+
+  <div id="total" 
+       style="margin-top:20px; font-size:20px; font-weight:bold; text-align:right; color:#0b8a3b;">
+  </div>
+
+  <a href="https://vk.com/jana_kuschnir"
+     style="display:block; margin-top:25px; text-align:center; padding:12px; 
+            background:#0b8a3b; color:white; border-radius:8px; text-decoration:none; font-weight:bold;">
+    Оплата
+  </a>
+
+</div>
+
+<script>
+  function loadCart() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let html = "";
+    let total = 0;
+
+    if (cart.length === 0) {
+      document.getElementById("cart").innerHTML = 
+        "<p style='text-align:center; color:#777;'>Корзина пуста.</p>";
+      document.getElementById("total").innerHTML = "";
+      return;
+    }
+
+    cart.forEach((item, index) => {
+      html += `
+        <div style="
+          display:flex; 
+          justify-content:space-between; 
+          align-items:center; 
+          padding:12px 0; 
+          border-bottom:1px solid #eee;">
+          
+          <div>
+            <strong>${item.product}</strong><br>
+            <span style="color:#0b8a3b; font-weight:bold;">${item.price.toFixed(2)} ₽</span>
+          </div>
+
+          <button onclick="removeItem(${index})"
+            style="background:#ff4d4d; color:white; border:none; padding:6px 10px; 
+                   border-radius:6px; cursor:pointer;">
+            ✖
+          </button>
+        </div>
+      `;
+      total += item.price;
+    });
+
+    document.getElementById("cart").innerHTML = html;
+    document.getElementById("total").innerHTML = "Сумма: " + total.toFixed(2) + "₽";
+  }
+
+  function removeItem(index) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+  }
+
+  loadCart();
+</script>
