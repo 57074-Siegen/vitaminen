@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glucosamin 1600</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f5f5;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    h1 {
+      text-align: center;
+      color: #1c3b4a;
+      margin-top: 30px;
+      animation: slideDown 0.6s ease;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    img {
+      display: block;
+      margin: 20px auto;
+      width: 260px;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      animation: zoomIn 0.6s ease;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    p {
+      max-width: 700px;
+      margin: 10px auto;
+      text-align: center;
+      line-height: 1.6;
+      font-size: 16px;
+      color: #333;
+      padding: 0 15px;
+    }
+
+    .btn {
+      display: block;
+      margin: 25px auto;
+      padding: 14px 20px;
+      background: #0b8a3b;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      width: 80%;
+      max-width: 260px;
+      text-align: center;
+      transition: 0.2s;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .btn:hover {
+      background: #0a6f30;
+      transform: scale(1.05);
+    }
+
+    .category-content a {
+      text-decoration: none;
+      color: #0b8a3b;
+      font-weight: bold;
+    }
+
+    .category-content a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+  <!-- Warenkorb Button -->
+  <a href="cart.html" 
+     style="position: fixed; top: 20px; right: 20px; 
+            background: #0b8a3b; color: white; padding: 10px 16px; 
+            border-radius: 8px; text-decoration: none; font-weight: bold;">
+    🛒 Корзина
+  </a>
+
+  <!-- Kategorie Button -->
+  <div class="category" onclick="toggleCategory('cat1')"
+       style="position: fixed; top: 70px; right: 20px; 
+              background: #0b8a3b; color: white; padding: 10px 16px; 
+              border-radius: 8px; font-weight: bold; cursor: pointer;">
+    ➕ Витамины A–Z
+  </div>
+
+  <style>
+    .category-content {
+      display: none;
+      position: fixed;
+      top: 120px;
+      right: 20px;
+      width: 200px;
+      background: #f7f7f7;
+      padding: 10px 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      animation: fadeIn 0.3s ease;
+    }
+  </style>
+
+  <div id="cat1" class="category-content">
+    <p><a href="index.html8.html">• Главная страница</a></p>
+    <p><a href="omega 3.html">• Омега‑3</a></p>
+    <p><a href="Magnesium.html">• Магний</a></p>
+    <p><a href="Glucosamin_1600.html">• Глюкозамин 1600</a></p>
+  </div>
+
+  <script>
+    function toggleCategory(id) {
+      const box = document.getElementById(id);
+      box.style.display = box.style.display === "block" ? "none" : "block";
+    }
+
+    function addToCart(product, price) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push({ product, price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert("Добавлено в корзину!");
+    }
+  </script>
+
+</head>
+<body>
+
+  <h1>Doppelherz Глюкозамин 1600</h1>
+
+  <img src="vita3.jpg" alt="Глюкозамин 1600">
+
+  <p>
+    Глюкозамин является естественным компонентом соединительной ткани человека  
+    и играет роль в формировании хрящевых структур.  
+    Многие люди принимают глюкозамин, чтобы поддержать суставы  
+    в повседневной жизни или при физических нагрузках.
+  </p>
+
+  <p>
+    Капсулы Glucosamin 1600 содержат комбинацию глюкозамина, коллагена, MSM и витамина C.  
+    Витамин C способствует нормальному образованию коллагена  
+    для нормальной функции хрящей и костей.  
+    Состав подобран таким образом, чтобы поддерживать организм  
+    при ежедневной активности.
+  </p>
+
+  <p>
+    В одной упаковке обычно содержится 1600 мг глюкозамина в суточной порции.  
+    Точный состав и количество ингредиентов указаны на упаковке  
+    и могут немного отличаться в зависимости от продукта.
+  </p>
+
+  <p><strong>Цена: 1200,00 ₽</strong></p>
+
+  <a href="#" class="btn" onclick="addToCart('Doppelherz Глюкозамин 1600', 1200)">
+    В корзину
+  </a>
+
+</body>
+</html>
